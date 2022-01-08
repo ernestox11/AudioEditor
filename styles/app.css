@@ -1,0 +1,287 @@
+/*** GLOBAL STYLES ***/
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Raleway", sans-serif;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	background-color: rgb(41, 41, 41);
+}
+
+/*****TEST*****/
+.test-timestamps {
+	color: aliceblue;
+}
+/*** CUSTOM SCROLLBAR ****/
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: rgb(19, 19, 19);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: rgb(86, 91, 94);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: rgb(120, 128, 132);
+}
+
+/*** APP STYLES ***/
+
+.wrapper {
+	display: flex;
+	min-height: 100vh;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.app-container {
+	padding: 1em;
+	width: 100%;
+	max-width: 1280px;
+	background-color: rgb(30, 30, 30);
+	border-radius: 0.5em;
+	box-shadow: 0 0 0.4em #0c0c0c;
+}
+
+/*** RECORDING SECTION STYLES ***/
+.main-controls {
+	display: flex;
+}
+
+.recording {
+	flex-grow: 1;
+	position: relative;
+	display: flex;
+	align-items: center;
+	padding-right: 1em;
+}
+
+.mic-wave-container {
+	/*background-color: blueviolet;*/
+	width: 100%;
+}
+
+.recording-icon {
+	color: rgb(255, 235, 244);
+	font-size: 5em;
+}
+
+.button-record,
+.button-stop {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	height: 10em;
+	width: 10em;
+	border-style: solid;
+	border-width: 0.6em;
+	border-radius: 50%;
+	transition: border-width 0.25s, background-color 0.2s;
+	align-items: center;
+	justify-content: center;
+}
+
+.button-record {
+	display: flex;
+	border-color: rgb(25, 25, 25);
+	background-color: rgb(241, 28, 38);
+}
+
+.button-record:hover {
+	background-color: rgb(243, 66, 75);
+}
+
+.button-record:active {
+	background-color: rgb(165, 45, 51);
+	border-width: 1em;
+}
+
+.button-record:disabled {
+	background-color: rgb(25, 25, 25);
+}
+
+.button-record:disabled * {
+	color: rgb(65, 65, 65);
+}
+
+.button-stop {
+	display: none;
+	z-index: 12;
+	border-color: rgb(25, 25, 25);
+	background-color: rgb(28, 103, 241);
+}
+
+.button-stop:hover {
+	background-color: rgb(59, 123, 243);
+}
+
+.button-stop:active {
+	background-color: rgb(21, 87, 209);
+	border-width: 1em;
+}
+
+/*** SOUND CLIPS SECTION STYLES ***/
+
+.sound-clips {
+	background-color: rgb(19, 19, 19);
+	height: 35em;
+	min-width: 25em;
+	padding: 0 0.8em 1.4em 1.4em;
+	overflow-y: scroll;
+}
+
+.clip {
+	background-color: rgb(67, 71, 73);
+	border-radius: 0.5em;
+	margin-top: 1.4em;
+}
+
+.clip h2 {
+	color: rgb(205, 215, 221);
+	font-size: 1.3em;
+	align-self: center;
+	padding: 0.5em;
+	margin: 0;
+}
+
+.seekbar-container {
+	background-color: rgb(43, 43, 43);
+}
+
+.buttons-container {
+	display: flex;
+	justify-content: stretch;
+}
+
+.clip .div {
+	border: 1px solid rgb(19, 19, 19);
+	overflow: auto;
+}
+.clip button {
+	border: 0;
+	flex-grow: 1;
+	font-size: 0.8em;
+	text-transform: uppercase;
+	background-color: rgb(36, 36, 36);
+	color: rgb(201, 218, 228);
+}
+
+.clip button:hover {
+	background-color: rgb(68, 68, 68);
+}
+
+button.delete-button,
+button.edit-button,
+button.play-button {
+	/*width: 5em;*/
+	height: 3em;
+}
+
+button.play-button {
+	border-right: 0;
+	border-bottom-left-radius: 0.5em;
+}
+
+button.delete-button {
+	border-left: 1px solid rgb(19, 19, 19);
+	border-bottom-right-radius: 0.5em;
+}
+button.delete-button:hover {
+	background-color: rgb(155, 20, 27);
+}
+
+button.edit-button,
+button.delete-button {
+	border-left: 0;
+}
+
+.clip button:disabled {
+	background-color: rgb(51, 51, 51);
+	color: rgb(112, 112, 112);
+
+	/*/color: rgb(14, 201, 214);*/
+}
+
+/*** EDITION SECTION STYLES ***/
+
+.edition {
+	display: flex;
+	flex-direction: column;
+
+	padding-top: 1em;
+}
+.edition-bar {
+	background-color: rgb(44, 44, 44);
+	flex-grow: 1;
+	height: 96px;
+}
+
+.edition-controls {
+	display: flex;
+	color: rgb(238, 238, 238);
+	align-items: center;
+	padding-top: 1em;
+	font-size: 0.8em;
+	text-transform: uppercase;
+}
+
+.edition-button {
+	background-color: rgb(41, 41, 41);
+	border: none;
+	text-transform: uppercase;
+	color: rgb(238, 238, 238);
+	text-align: center;
+
+	padding: 0 2em;
+	text-decoration: none;
+	height: 4.2em;
+	display: inline-block;
+}
+
+.edition-button:hover {
+	background-color: rgb(51, 51, 51);
+	color: rgb(238, 238, 238);
+}
+
+.edition-button:disabled {
+	background-color: rgb(51, 51, 51);
+	color: rgb(112, 112, 112);
+
+	/*/color: rgb(14, 201, 214);*/
+}
+
+.cutting-modes-label {
+	padding-right: 1em;
+}
+
+.cutting-mode-toggle {
+	display: flex;
+}
+.zoom-slider {
+	flex-grow: 1;
+	padding: 0 1em;
+}
+
+.slider {
+	width: 100%;
+}
