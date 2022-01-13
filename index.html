@@ -1,74 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Audio Editor</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="styles/app.css" />
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio Editor</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/app.css">
-</head>
+	<body>
+		<div class="wrapper">
+			<div class="app-container">
+				<div class="main-controls">
+					<section class="recording">
+						<div id="micWaveform" class="mic-wave-container"></div>
+						<div id="buttons">
+							<button class="button-record">
+								<i class="bi bi-mic-fill recording-icon"></i>
+							</button>
+							<button class="button-stop">
+								<i class="bi bi-stop-fill recording-icon"></i>
+							</button>
+						</div>
+					</section>
 
-<body>
+					<section class="sound-clips"></section>
+				</div>
 
-    <div class="wrapper">
+				<section class="edition">
+					<label
+						for="playbackControls"
+						id="playbackControlsLabel"
+						class="playback-controls-label"
+						>Reproducir</label
+					>
+					<div id="playbackControls" class="playback-controls">
+						<button id="playFullClip" class="edition-button play-full-clip">
+							Clip Completo
+						</button>
+						<button
+							id="playSelectedRegion"
+							class="edition-button play-selected-region"
+						>
+							Región Seleccionada
+						</button>
+						<button
+							id="playEditedPreview"
+							class="edition-button play-edited-preview"
+						>
+							Resultado Preeliminar
+						</button>
+						<div id="tipsContainer" class="tips-container">
+							<span id="tip" class="tip"></span>
+						</div>
+					</div>
 
-        <div class="app-container">
-            <div class="main-controls">
+					<div id="editionBar" class="edition-bar"></div>
 
-                <section class="recording">
-                    <div id="micWaveform" class="mic-wave-container"></div>
-                    <div id="buttons">
-                        <button class="button-record">
-                            <i class="bi bi-mic-fill recording-icon"></i>
-                        </button>
-                        <button class="button-stop">
-                            <i class="bi bi-stop-fill recording-icon"></i>
-                        </button>
-                
-                    </div>
-                </section>
-                
-                <section class="sound-clips"></section>
+					<div class="edition-controls">
+						<label for="cutting-mode-toggle" class="cutting-modes-label"
+							>Modo de recorte:</label
+						>
+						<div id="cuttingModeToggle" class="cutting-mode-toggle">
+							<button
+								id="cutting-mode-remove"
+								class="edition-button cutting-mode-button cutting-mode-remove"
+							>
+								Eliminar Selección
+							</button>
+							<button
+								id="cutting-mode-keep"
+								class="edition-button cutting-mode-button cutting-mode-keep"
+							>
+								Conservar Selección
+							</button>
+						</div>
+						<div class="zoom-slider">
+							<input
+								data-action="zoom"
+								type="range"
+								min="0"
+								max="2000"
+								value="0"
+								class="slider"
+							/>
+						</div>
 
-            </div>           
-            
-            <section class="edition">
-                <div id="editionBar" class="edition-bar"></div>   
-                <div class="edition-controls">
-                   
-                    <label for="cutting-mode-toggle" class="cutting-modes-label">Modo de recorte:</label>
-                    <div id="cuttingModeToggle" class="cutting-mode-toggle">
-                        <button id="cutting-mode-remove" class="edition-button cutting-mode-button cutting-mode-remove">Eliminar
-                            Selección</button>
-                        <button id="cutting-mode-keep" class="edition-button cutting-mode-button cutting-mode-keep">Conservar
-                            Selección</button>                        
-                    </div>
-                    <div class="zoom-slider">
-                        <input data-action="zoom" type="range" min="0" max="2000" value= "0" class="slider">
-                    </div>
-                    <button id="clearSelection" class="edition-button clear-selection">Deshacer selección</button>
-                    <button id="cutAudio" class="edition-button cut-audio">Recortar</button>
-                    <button id="cancelEditing" class="edition-button cancel-editing">Cancelar</button>
-                </div>
-                
-            </section>
-            
-        </div>
+						<div id="selectionControls" class="selection-controls">
+							<button
+								id="reverseRegions"
+								class="edition-button reverse-regions"
+							>
+								Invertir regiones
+							</button>
+							<button id="clearRegions" class="edition-button clear-regions">
+								Limpiar todas las regiones
+							</button>
+							<button
+								id="clearSelectedRegion"
+								class="edition-button clear-selected-region"
+							>
+								Limpiar región seleccionada
+							</button>
+						</div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
-        <script src="src/lib/wavesurfer.js"></script>
-        <script src="src/lib/wavesurfer.microphone.min.js"></script>
-        <script src="src/lib/wavesurfer.regions.js"></script>
-        <script src="src/app.js"></script>       
+						<button id="cutAudio" class="edition-button cut-audio">
+							Recortar
+						</button>
+						<button id="cancelEditing" class="edition-button cancel-editing">
+							Cancelar
+						</button>
+					</div>
+				</section>
+			</div>
 
-</body>
-
+			<script
+				src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+				integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+				crossorigin="anonymous"
+			></script>
+			<script src="src/lib/wavesurfer.js"></script>
+			<script src="src/lib/wavesurfer.microphone.min.js"></script>
+			<script src="src/lib/wavesurfer.regions.js"></script>
+			<script src="src/app.js"></script>
+		</div>
+	</body>
 </html>

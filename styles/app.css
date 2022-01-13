@@ -224,11 +224,31 @@ button.delete-button {
 
 /*** EDITION SECTION STYLES ***/
 
+.playback-controls {
+	display: flex;
+	color: rgb(238, 238, 238);
+	align-items: stretch;
+	padding-bottom: 1em;
+	font-size: 0.8em;
+	text-transform: uppercase;
+}
+
+.tips-container {
+	flex-grow: 1;
+	background-color: rgb(24, 24, 24);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.tip {
+	color: rgb(201, 201, 201);
+}
+
 .edition {
 	display: flex;
 	flex-direction: column;
-
-	padding-top: 1em;
+	padding-top: 0.8em;
 }
 .edition-bar {
 	background-color: rgb(44, 44, 44);
@@ -284,4 +304,8 @@ button.delete-button {
 
 .slider {
 	width: 100%;
+}
+
+.selection-controls {
+	display: flex;
 }
